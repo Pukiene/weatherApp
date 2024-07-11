@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My weather app</title>
+  </head>
+  <body>
+	<h1>Weather in Glasgow</h1>
+	<p id="myParagraph">Please wait...</p>
+	<script>
+	    <// Fetch Glasgow weather data from API
+fetch('https://api.openweathermap.org/data/2.5/weather?q=Glasgow&appid=050af488d34eebfda6d5bd119f3a662b')
+	
+  // Convert response string to json object
+  .then(response => response.json())
+  .then(response => {
+
+    // Display whole API response in browser console (take a look at it!)
+    console.log(response);
+		
+    // Copy one element of response to our HTML paragraph
+    document.getElementById("myParagraph").innerHTML = response.weather[0].description;
+		
+  })
+  .catch(err => {
+	
+    // Display errors in console
+    console.log(err);
+});		
+>
+	</script>
+  </body>
+</html>

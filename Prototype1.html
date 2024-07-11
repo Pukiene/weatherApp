@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My weather app</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <div class="card text-bg-dark">
+  <img src="https://images.pexels.com/photos/16269801/pexels-photo-16269801/free-photo-of-northern-lights-activity-above-mt-offersoykammen-i-vestvagoy-lofoten-islands.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img">
+   <div class="card-body card-img-overlay">
+	<h1 class="card-header">Weather in Glasgow</h1>
+	<ul class="list-group list-group-flush">
+	<p class="list-group-item" id="myParagraph">Please wait...</p>
+	<p class="list-group-item" id="myTemp">Please wait...</p>
+	<p class="list-group-item" id="myfeelslike">Please wait...</p>
+	<p class="list-group-item" id="myhumi">Please wait...</p>
+	</ul>
+	<script>
+	    // Fetch Glasgow weather data from API
+fetch('https://api.openweathermap.org/data/2.5/weather?q=Glasgow&appid=050af488d34eebfda6d5bd119f3a662b&units=metric')
+	
+  // Convert response string to json object
+  .then(response => response.json())
+  .then(response => {
+
+    // Display whole API response in browser console (take a look at it!)
+    console.log(response);
+		
+    // Copy one element of response to our HTML paragraph
+    document.getElementById("myParagraph").innerHTML = 'Wind speed: ' + response.wind.speed+'meter/sec';
+	document.getElementById("myTemp").innerHTML = 'Temperature: ' + response.main.temp+'°C';
+	document.getElementById("myfeelslike").innerHTML = 'Temperature feels like: ' + response.main.feels_like+'°C';
+	document.getElementById("myhumi").innerHTML = 'Humidity: ' + response.main.humidity+'%';
+		
+  })
+  .catch(err => {
+	
+    // Display errors in console
+    console.log(err);
+});		
+
+	</script>
+	</div>
+	</div>
+  </body>
+</html>
